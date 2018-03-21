@@ -1,0 +1,40 @@
+<div class="d-flex cointainer p-3 justify-content-around" *ngIf="artist">
+  <img [src]="artist.images[1].url" class="img-thumbnail rounded-circle" style="max-height: 320px" [alt]="artist.name" width="320"
+    height="320">
+  <div class="card bg-dark m-2 col-8 mh-100">
+    <div class="card-header">
+      <span class="h2">{{artist.name}}</span>
+      <a class="btn btn-light float-right" role="button" [routerLink]="['/search']">Volver</a>
+    </div>
+    <div class="card-body">
+      <h4 class="card-title">Top tracks</h4>
+      <table class="table table-dark">
+        <tr class="p-1" *ngFor="let track of artist.topTracks">
+          <td>
+            <img [src]="track.album.images[1].url" class="img-thumbnail mr-1" style="max-height: 150px" [alt]="artist.name" width="150"
+              height="150">
+          </td>
+          <td>
+            <p>Nombre:
+              <strong>{{track.name}}</strong>
+            </p>
+            <p>Popularidad:
+              <strong class="text-success">{{track.popularity}}%</strong>
+            </p>
+
+          </td>
+          <td>
+            <iframe class="mt-20" [src]="track.uri | safedom:'https://open.spotify.com/embed?uri='" width="300" height="80" frameborder="0"
+              allowtransparency="true"></iframe>
+          </td>
+        </tr>
+      </table>
+
+    </div>
+    <div class="card-footer text-muted">
+      <a class="btn btn-light float-right" role="button" target="_blank" [href]="artist.external_urls.spotify">
+        Ver en Spotify</a>
+    </div>
+  </div>
+
+</div>

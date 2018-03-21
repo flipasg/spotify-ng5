@@ -1,3 +1,18 @@
-<p>
-  search works!
-</p>
+<div class="container">
+  <div class="row">
+    <div class="col-md-3 p-2">
+      <input type="text" placeholder="Busque un artista..." class="form-control" (keyup)="findArtist()" [(ngModel)]="searchString">
+    </div>
+    <div class="col-md-9" *ngIf="searchString.length > 1">
+      <h1 class="text-capitalize">{{searchString}}</h1>
+      <hr>
+      <div class="artistsContainer">
+        <div class="col-md-3 artistThumbnail" *ngFor="let artist of artists" [routerLink]="['/artist', artist.id]">
+          <img src="{{artist.images | nophoto}}" alt="" class="img-thumbnail">
+          <p>{{artist.name}}</p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
